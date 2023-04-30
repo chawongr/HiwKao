@@ -1,0 +1,282 @@
+﻿@model Order;
+@{
+    var test = ViewData["StoreName"];
+    Layout=null;
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+
+<style>
+    body{
+        background-image: url("https://i.pinimg.com/564x/0f/02/4a/0f024adf359d7b313e9e8c2472a0109c.jpg");
+        background-size: cover;
+        backdrop-filter: blur(70px);
+        background-repeat: no-repeat;
+    }
+    img{
+        border-radius: 40px;
+        width: 10vw;
+        height: 18vh;
+    }
+    .main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding:5rem 5rem;
+    }
+    .main .center{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width:fit-content;
+        heigth:fit-content;
+        padding: 3rem 6rem;
+        background-color:rgba(198, 198, 198, 0.15);
+        border-radius:20px;
+    }
+    .button-circle{
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50%;
+        border:none;
+        background-color: white;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .button{
+        display:flex;
+        justify-items: start;
+        
+    }
+    .button-rd{
+        width: fit-content;
+        padding: 1rem 3.5rem;
+        border-radius: 40px;
+        font-weight: bold;
+        border: none;
+        
+    }
+    .button-rd :hover{
+        box-shadow: 40px #000;
+    }
+    .button-rd :hover{
+        box-shadow: 40px #000;
+    }
+    .button-rm{
+        width: fit-content;
+        padding: 0.8rem 1.6rem;
+        border-radius: 40px;
+        font-weight: bold;
+        margin-bottom: 10%;
+        border: none;
+    }
+    .top{
+        margin-top: 1rem;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    .form-control{
+        background: transparent;
+        border-bottom: #000 solid 2px;
+        border-radius: 0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
+    .main  .center .form-group .form-control input{
+        outline: none;
+        border: none;
+    }
+   .form-control:focus,
+      .form-control:active {
+         background: transparent;
+         outline: none;
+         border: none;
+ }
+
+</style>
+
+<body>
+    <div class="main">
+        <div class="center">
+            <button type="button" class="button-rm"  onclick="location.href='@Url.Action("GoBack", "Customer")'">X</button>
+            <img src="@ViewBag.StoreImage">
+            <h1>@ViewData["StoreName"]</h1>
+            <div class="d-flex justify-content-center">
+                
+            </div>
+            <form method="POST" asp-controller="Customer" asp-action="CreateOrder">
+                <div class="form-group">
+                    <input type="text" asp-for="StoreName" class="form-control" value=@test hidden />
+                    <label asp-for="Destination">Location</label>
+                    <input type="text" asp-for="Destination" class="form-control" />
+                </div>
+                <div style="display: flex;">
+                    <div class="form-group">
+                        <label asp-for="Menu1">Menu</label>
+                        <input type="text" asp-for="Menu1" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Amount1">Amount</label>
+                        <input type="number" asp-for="Amount1" class="form-control amount" min="1" max="5" value=1 />
+                    </div>
+                </div>
+                <div style="display: flex;">
+                    <div class="form-group" id="item2" hidden>
+                        <label asp-for="Menu2">Menu</label>
+                        <input type="text" asp-for="Menu2" id="item2value" class="form-control" />
+                    </div>
+                    <div class="form-group" id="amount2" hidden>
+                        <label asp-for="Amount2">Amount</label>
+                        <input type="number" asp-for="Amount2" id="amount2value" class="form-control amount" min="1" max="5" />
+                    </div>
+
+                </div>
+                <div style="display: flex;">
+                    <div class="form-group" id="item3" hidden>
+                        <label asp-for="Menu3">Menu</label>
+                        <input type="text" asp-for="Menu3" id="item3value" class="form-control" />
+                    </div>
+                    <div class="form-group" id="amount3" hidden>
+                        <label asp-for="Amount3">Amount</label>
+                        <input type="number" asp-for="Amount3" id="amount3value" class="form-control amount" min="1" max="5" />
+                    </div>
+                </div>
+                <div style="display: flex;">
+                    <div class="form-group" id="item4" hidden>
+                        <label asp-for="Menu4">Menu</label>
+                        <input type="text" asp-for="Menu4" id="item4value" class="form-control" />
+                    </div>
+                    <div class="form-group" id="amount4" hidden>
+                        <label asp-for="Amount4">Amount</label>
+                        <input type="number" asp-for="Amount4" id="amount4value" class="form-control amount" min="1" max="5" />
+                    </div>
+                </div>
+                <div style="display: flex;">
+                    <div class="form-group" id="item5" hidden>
+                        <label asp-for="Menu5">Menu</label>
+                        <input type="text" asp-for="Menu5" id="item5value" class="form-control" />
+                    </div>
+                    <div class="form-group" id="amount5" hidden>
+                        <label asp-for="Amount5">Amount</label>
+                        <input type="number" asp-for="Amount5" id="amount5value" class="form-control amount" min="1" max="5" />
+                    </div>
+                </div>
+                <div class="top d-flex justify-content-center mt-1">
+                    <h5 id="total">Total of Order : 1</h5>
+                </div>
+                <div class="d-flex justify-content-center button mt-3">
+                    <div><button type="button" class="button-circle" id="addButton"><h2>+</h2></button></div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="button-rm" id="removeButton" hidden>Remove Menu</button>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="button-rd" id="submitButton">Order</button>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+
+
+</body>
+<script>
+    var addButton = document.getElementById("addButton");
+    addButton.addEventListener("click", function () {
+        var item2 = document.getElementById("item2");
+        var amount2 = document.getElementById("amount2");
+        var item3 = document.getElementById("item3");
+        var amount3 = document.getElementById("amount3");
+        var item4 = document.getElementById("item4");
+        var amount4 = document.getElementById("amount4");
+        var item5 = document.getElementById("item5");
+        var amount5 = document.getElementById("amount5");
+
+        if (item2.hidden && amount2.hidden) {
+            item2.hidden = false;
+            amount2.hidden = false;
+            removeButton.hidden = false;
+        } else if (item3.hidden && amount3.hidden) {
+            item3.hidden = false;
+            amount3.hidden = false;
+        } else if (item4.hidden && amount4.hidden) {
+            item4.hidden = false;
+            amount4.hidden = false;
+        } else if (item5.hidden && amount5.hidden) {
+            item5.hidden = false;
+            amount5.hidden = false;
+            addButton.hidden = true;
+        }
+    });
+
+    var removeButton = document.getElementById("removeButton");
+    removeButton.addEventListener("click", function () {
+        var item2 = document.getElementById("item2");
+        var item2value = document.getElementById("item2value");
+        var amount2 = document.getElementById("amount2");
+        var amount2value = document.getElementById("amount2value");
+        var item3 = document.getElementById("item3");
+        var item3value = document.getElementById("item3value");
+        var amount3 = document.getElementById("amount3");
+        var amount3value = document.getElementById("amount3value");
+        var item4 = document.getElementById("item4");
+        var item4value = document.getElementById("item4value");
+        var amount4 = document.getElementById("amount4");
+        var amount4value = document.getElementById("amount4value");
+        var item5 = document.getElementById("item5");
+        var item5value = document.getElementById("item5value");
+        var amount5 = document.getElementById("amount5");
+        var amount5value = document.getElementById("amount5value");
+
+        if (!item5.hidden && !amount5.hidden) {
+            item5value.value = "";
+            amount5value.value = "";
+            item5.hidden = true;
+            amount5.hidden = true;
+            addButton.hidden = false;
+        } else if (!item4.hidden && !amount4.hidden) {
+            item4value.value = "";
+            amount4value.value = "";
+            item4.hidden = true;
+            amount4.hidden = true;
+        } else if (!item3.hidden && !amount3.hidden) {
+            item3value.value = "";
+            amount3value.value = "";
+            item3.hidden = true;
+            amount3.hidden = true;
+        } else if (!item2.hidden && !amount2.hidden) {
+            item2value.value = "";
+            amount2value.value = "";
+            item2.hidden = true;
+            amount2.hidden = true;
+            removeButton.hidden = true;
+        }
+    });
+
+    const amountInputs = document.querySelectorAll('.amount');
+    amountInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            const total = Array.from(amountInputs).reduce((acc, input) => acc + parseInt(input.value || 0), 0);
+            document.getElementById('total').textContent = `Total of Order : ${total}`;
+            document.getElementById('submitButton').disabled = total > 6;
+        });
+    });
+
+    document.getElementById('submitButton').addEventListener('click', (event) => {
+        const total = Array.from(amountInputs).reduce((acc, input) => acc + parseInt(input.value || 0), 0);
+        if (total > 5) {
+            event.preventDefault();
+            alert('The total must be less than 5 to submit the form.');
+        }
+    });
+
+</script>
